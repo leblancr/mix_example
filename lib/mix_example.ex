@@ -1,15 +1,15 @@
-defmodule Example do
+defmodule MixExample do
   @moduledoc """
-  Documentation for `Example`.
+  Documentation for `MixExample`.
     An example Mix project
   """
 
   require Integer
 
   @doc """
-  ## Examples
+  ## MixExamples
 
-      iex> Example.hello()
+      iex> MixExample.hello()
       :world
 
   """
@@ -33,7 +33,7 @@ defmodule Example do
 
   def puts(message), do: IO.puts(message)
 
-  def hello do
+  def sigils do
     puts ~c/2 + 7 = #{2 + 7}/
     puts ~C/2 + 7 = #{2 + 7}/
 
@@ -63,7 +63,9 @@ defmodule Example do
     puts ~p/elixir school, [:lowercase]/
     puts "Default sigil output: #{~p(elixir school)}"  # Should output "ELIXIR SCHOOL"
     puts "Lowercase sigil output: #{~p(elixir school, [:lowercase, :test])}"  # Should output "elixir school"
+  end
 
+  def comprehensions do
     # *** Comprehensions ***
     res = for x <- [1, 2, 3, 4, 5], do: x*x
     puts("Squared values: #{inspect(res)}")
@@ -80,7 +82,7 @@ defmodule Example do
     res = for <<c <- "hello">>, do: <<c>>
     puts("Binaries: #{inspect(res)}")
 
-      # just keys you want
+    # just keys you want
     res = for {:ok, val} <- [ok: "Hello", error: "Unknown", ok: "World"], do: val
     puts("ok: only: #{inspect(res)}")
 
@@ -91,8 +93,12 @@ defmodule Example do
     end
     puts("output: #{inspect(res)}")
 
+    # nested
     res = for n <- list, times <- 1..n, do: puts "#{n} - #{times}"
+    puts("nested: #{inspect(res)}")
+  end
 
+  def filters do
     # *** Filters ***
     res = for x <- 1..10, Integer.is_even(x), do: x
     puts("evens: #{inspect(res)}")
@@ -103,7 +109,9 @@ defmodule Example do
               rem(x, 3) == 0,
               rem(x, 5) ==0, do: x
     puts("multiple filters: #{inspect(res)}")
+  end
 
+  def using_into do
     # *** Using :into ***
     res = for {k, v} <- [one: 1, two: 2, three: 3], into: %{}, do: {k, v}
     puts("Using :into: #{inspect(res)}")
@@ -111,5 +119,34 @@ defmodule Example do
     # use list comprehensions and :into to create strings:
     res = for c <- [72, 101, 108, 108, 111], into: "", do: <<c>>
     puts("Using comprehensions :into: strings:#{inspect(res)}")
+  end
+
+  def strings do
+    # Strings
+    string = <<104,101,108,108,111>>
+    puts "string = <<104,101,108,108,111>>: #{string}"
+
+    string = string <> <<0>>
+    IO.write("string = string <> <<0>>: ")
+    IO.inspect(string)
+
+    # Charlists
+    IO.write("'hełło': ")
+    IO.inspect('hełło')
+
+    string = ~c/"hełło" <> <<0>>: /
+    IO.write(string)
+    string = "hełło" <> <<0>>
+    IO.inspect(string)
+
+    puts "?Z: #{?Z}"
+  end
+
+  def main do
+    sigils()
+    comprehensions()
+    filters()
+    using_into()
+    strings()
   end
 end

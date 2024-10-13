@@ -1,16 +1,16 @@
-# Example
+# MixExample
 
 **TODO: Add description**
 
 ## Installation
 
 If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `example` to your list of dependencies in `mix.exs`:
+by adding `mix_example` to your list of dependencies in `mix.exs`:
 
 ```elixir
 def deps do
   [
-    {:example, "~> 0.1.0"}
+    {:mix_example, "~> 0.1.0"}
   ]
 end
 ```
@@ -21,5 +21,8 @@ be found at <https://hexdocs.pm/example>.
 
 To run:
 compile:
-c("lib/example.ex")
-Example.hello()
+c("lib/mix_example.ex")
+MixExample.hello()
+mix run mix_example_project.exs
+$ mix deps.get # gets ExDoc + Earmark.
+$ mix docs # makes the documentation.
