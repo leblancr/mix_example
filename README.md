@@ -26,3 +26,6 @@ MixExample.hello()
 mix run mix_example_project.exs
 $ mix deps.get # gets ExDoc + Earmark.
 $ mix docs # makes the documentation.
+
+To install dependency after adding to mix.exs:
+mix deps.get
