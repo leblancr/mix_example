@@ -18,6 +18,7 @@ defmodule MixExample do
   """
 
   require Integer
+  require IExHelpers
 
   @doc """
   ## MixExamples
@@ -236,7 +237,16 @@ defmodule MixExample do
     puts "ny_datetime: #{ny_datetime}"
   end
 
-  def main do
+  def iex_helpers do
+    puts "\n***** IEx Helpers *****"
+    puts "*** .iex.exs ***"
+    puts "IExHelpers.whats_this?(\"a string\"): #{IExHelpers.whats_this?("a string")}"
+    puts "IExHelpers.whats_this?(%{}): #{IExHelpers.whats_this?(%{})}"
+    puts "IExHelpers.whats_this?(:test): #{IExHelpers.whats_this?(:test)}"
+
+  end
+
+    def main do
     sigils()
     comprehensions()
     filters()
@@ -245,6 +255,6 @@ defmodule MixExample do
     graphemes_and_codepoints()
     string_functions()
     date_and_time()
-
+    iex_helpers()
   end
 end
